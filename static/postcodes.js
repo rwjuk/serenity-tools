@@ -14,7 +14,7 @@ $(document).ready(function(){
 	
 	$("#btn-calc-multi-postcode").click(function(){
 		var ref = $("#ref_postcode").val().toUpperCase();
-		var test_list = $("#postcode2").val().split("\n");
+		var test_list = $("#postcode-list").val().split("\n");
 		if (ref !== "" && test_list.length > 0)
 		{
 			jQuery.ajax({
