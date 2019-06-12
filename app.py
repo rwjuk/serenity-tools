@@ -1,11 +1,14 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 
 import requests
 import json
 
 from geopy.distance import great_circle
-from math import radians, cos, sin, asin, sqrt
+
+@app.route('/postcodes')
+def render_postcode_tools():
+	return render_template("templates/postcode_tools.html")
 
 def get_postcode_lat_lng(postcode):
     r = requests.get("http://api.postcodes.io/postcodes/{}".format(postcode)).text
@@ -15,10 +18,10 @@ def get_postcode_lat_lng(postcode):
 
 @app.route('/api/postcodes/singledistance/<p1>/<p2>')
 def calculate_postcode_distance(p1, p2):
-    p1_latlng = get_postcode_lat_lng(p1)
-    p2_latlng = get_postcode_lat_lng(p2)
+    latlng_p1 = get_postcode_lat_lng(p1)
+    latlng_p2 = get_postcode_lat_lng(p2)
     
-    distance = great_circle(p1_latlng, p2_latlng)
+    distance = great_circle(latlng_p1, latlng_p2)
     return str((round(distance.miles,3), round(distance.km,3)))
 
 
