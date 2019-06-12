@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("#btn-calc-single-postcode").click(function(){
-		var p1 = $("#postcode1").val();
-		var p2 = $("#postcode2").val();
+		var p1 = $("#postcode1").val().toUpper();
+		var p2 = $("#postcode2").val().toUpper();
 		if (p1 !== "" && p2 !== "")
 		{
 			
