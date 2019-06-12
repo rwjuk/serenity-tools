@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$("#btn-calc-multi-postcode").click(function(){
 		var ref = $("#ref_postcode").val().toUpperCase();
 		var test_list = $("#postcode2").val().split("\n");
-		if (ref !== "" && text !== "")
+		if (ref !== "" && test_list.length > 0)
 		{
 			jQuery.post( `/api/postcodes/batchdistance/`, { reference_postcode: ref, test_postcode_list: test_list} , function( data ) {
 				/*var data_spl = data.split(",");
