@@ -26,7 +26,7 @@ def calculate_postcode_distance(p1, p2):
     latlng_p2 = get_postcode_lat_lng(p2)
     
     distance = great_circle(latlng_p1, latlng_p2)
-    return str((round(distance.miles,3), round(distance.km,3)))
+    return "{},{}".format(round(distance.miles,3), round(distance.km,3))
 
 
 @app.route('/api/postcodes/batchdistance', methods=['POST'])
