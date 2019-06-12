@@ -6,6 +6,10 @@ import json
 
 from geopy.distance import great_circle
 
+@app.route('/about')
+def render_postcode_tools():
+	return render_template("about.html")
+
 @app.route('/postcodes')
 def render_postcode_tools():
 	return render_template("postcode_tools.html")
