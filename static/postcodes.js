@@ -23,8 +23,8 @@ $(document).ready(function(){
 				data: JSON.stringify({ reference_postcode: ref, test_postcode_list: test_list }),
 				contentType: "application/json",
 				dataType: 'json'
-			}).success(function(data){
-				outputBox.val(outputBox.val() + data); },
+			}).done(function(data){
+				outputBox.val(outputBox.val() + data);
 			});
 		}
 	});
