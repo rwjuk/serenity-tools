@@ -24,6 +24,7 @@ $(document).ready(function(){
 				contentType: "application/json",
 				dataType: 'json'
 			}).done(function(data){
+                var outputBox = $("#output");
 				outputBox.val(outputBox.val() + data);
 			});
 		}
