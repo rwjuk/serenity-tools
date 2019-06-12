@@ -17,7 +17,7 @@ $(document).ready(function(){
 		var test_list = $("#postcode2").val().split("\n");
 		if (ref !== "" && test_list.length > 0)
 		{
-			jQuery.post( `/api/postcodes/batchdistance/`, { reference_postcode: ref, test_postcode_list: test_list} , function( data ) {
+			jQuery.post( `/api/postcodes/batchdistance`, { reference_postcode: ref, test_postcode_list: test_list} , function( data ) {
 				/*var data_spl = data.split(",");
 				var outputBox = $("#output");
 				outputBox.val(outputBox.val() + `Distance between ${p1} and ${p2}: ${data_spl[0]} miles, ${data_spl[1]} km\r\n`);*/
