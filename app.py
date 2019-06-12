@@ -8,7 +8,7 @@ from geopy.distance import great_circle
 
 @app.route('/postcodes')
 def render_postcode_tools():
-	return render_template("templates/postcode_tools.html")
+	return render_template("postcode_tools.html")
 
 def get_postcode_lat_lng(postcode):
     r = requests.get("http://api.postcodes.io/postcodes/{}".format(postcode)).text
