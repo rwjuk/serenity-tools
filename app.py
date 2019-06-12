@@ -13,7 +13,7 @@ def get_postcode_lat_lng(postcode):
     return (float(data["result"]["latitude"]), float(data["result"]["longitude"]))
 
 
-@app.route('/api/postcodedistance/<p1>/<p2>')
+@app.route('/api/postcodes/singledistance/<p1>/<p2>')
 def calculate_postcode_distance(p1, p2):
     p1_latlng = get_postcode_lat_lng(p1)
     p2_latlng = get_postcode_lat_lng(p2)
@@ -22,7 +22,7 @@ def calculate_postcode_distance(p1, p2):
     return str((round(distance.miles,3), round(distance.km,3)))
 
 
-@app.route('/api/batchpostcodedistance', methods=['POST'])
+@app.route('/api/postcodes/batchdistance', methods=['POST'])
 def calculate_batch_postcode_distance():
     obj = request.get_json(force=True)
     reference_postcode = obj['reference_postcode']
