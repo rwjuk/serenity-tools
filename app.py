@@ -31,11 +31,11 @@ def calculate_postcode_distance(p1, p2):
 
 @app.route('/api/postcodes/batchdistance', methods=['POST'])
 def calculate_batch_postcode_distance():
-    obj = request.get_json(force=True)
-    reference_postcode = obj['reference_postcode']
-    test_postcode_list = obj['test_postcode_list']
+	obj = request.get_json(force=True)
+	reference_postcode = obj['reference_postcode']
+	test_postcode_list = obj['test_postcode_list']
     
-    latlng_init = get_postcode_lat_lng(reference_postcode)
+	latlng_init = get_postcode_lat_lng(reference_postcode)
 	print(test_postcode_list)
     r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
     data = json.loads(r)
