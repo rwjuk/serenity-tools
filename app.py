@@ -45,7 +45,7 @@ def calculate_batch_postcode_distance():
             distance_item = result_item["query"], None
         else:
             distance = great_circle(latlng_init, (float(result_item["result"]["latitude"]), float(result_item["result"]["longitude"])))
-            distance_item = result_item["query"], round(distance.miles, 3), round(distance.km, 3)
+            distance_item = "{},{},{}".format(result_item["query"], round(distance.miles, 3), round(distance.km, 3))
         distance_list.append(distance_item)
 
     return str(distance_list)
