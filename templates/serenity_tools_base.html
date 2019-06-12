@@ -16,6 +16,9 @@
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
 	
+	{% block extra_includes %}
+	{% endblock %}
+	
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">

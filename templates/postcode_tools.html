@@ -1,5 +1,9 @@
 {% extends 'serenity_tools_base.html' %}
 
+{% block extra_includes %}
+<script src="{{ url_for('static', filename='postcodes.js') }}"></script>
+{% endblock %}
+
 {% block app_title %}
 Postcode tools
 {% endblock %}
@@ -8,12 +12,12 @@ Postcode tools
 <div class="container">
 	<h2>Postcode tools</h2>
 	
-	<div class="row">
+	<div class="row postcode-row">
     <div class="col">
-      <h3>Distance between two postcodes</h3>
+      <h4>Distance between two postcodes</h4>
 	<input type="text" placeholder="Postcode 1">
 	<input type="text" placeholder="Postcode 2">
-	<button class="btn btn-lg btn-primary btn-block">Calculate</button>
+	<button class="btn btn-lg btn-primary btn-block" id="btn-calc-single-postcode">Calculate</button>
     </div>
     <div class="col">
       <textarea id="output" readonly></textarea>
