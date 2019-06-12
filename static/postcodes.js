@@ -5,7 +5,7 @@ $(document).ready(function(){
 		if (p1 !== "" && p2 !== "")
 		{
 			
-			$.get( `/api/postcodes/singledistance/${p1}/${p2}`, function( data ) {
+			jQuery.get( `/api/postcodes/singledistance/${p1}/${p2}`, function( data ) {
 				var data_spl = data.split(",");
 				var outputBox = $("#output");
 				outputBox.val(outputBox.val() + `&#13;&#10;Distance between ${p1} and ${p2}: ${data_spl[0]} miles, ${data_spl[1]} km`);
