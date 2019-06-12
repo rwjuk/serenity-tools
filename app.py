@@ -38,16 +38,15 @@ def calculate_batch_postcode_distance():
     latlng_init = get_postcode_lat_lng(reference_postcode)
     r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
     data = json.loads(r)
-    distance_list = []
+    distance_list = {}
 
     for result_item in data["result"]:
         if result_item["result"] is None:
-            distance_item = result_item["query"], None
+            distance_list[result_item["query"]] = None
         else:
             distance = great_circle(latlng_init, (float(result_item["result"]["latitude"]), float(result_item["result"]["longitude"])))
-            distance_item = "{},{},{}".format(result_item["query"], round(distance.miles, 3), round(distance.km, 3))
-        distance_list.append(distance_item)
+            distance_list[result_item["query"]] = {"miles": round(distance.miles, 3), "km": round(distance.km, 3)}
 
-    return str(distance_list)
+    return jsonify(distance_list)
 
 
