@@ -8,11 +8,11 @@ from geopy.distance import great_circle
 
 @app.route('/about')
 def render_about():
-	return render_template("about.html")
+    return render_template("about.html")
 
 @app.route('/postcodes')
 def render_postcode_tools():
-	return render_template("postcode_tools.html")
+    return render_template("postcode_tools.html")
 
 def get_postcode_lat_lng(postcode):
     r = requests.get("http://api.postcodes.io/postcodes/{}".format(postcode)).text
@@ -31,23 +31,23 @@ def calculate_postcode_distance(p1, p2):
 
 @app.route('/api/postcodes/batchdistance', methods=['POST'])
 def calculate_batch_postcode_distance():
-	obj = request.get_json(force=True)
-	reference_postcode = obj['reference_postcode']
-	test_postcode_list = obj['test_postcode_list']
+    obj = request.get_json(force=True)
+    reference_postcode = obj['reference_postcode']
+    test_postcode_list = obj['test_postcode_list']
 
-	latlng_init = get_postcode_lat_lng(reference_postcode)
-	print(test_postcode_list)
-	r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
-	data = json.loads(r)
-	distance_list = {}
+    latlng_init = get_postcode_lat_lng(reference_postcode)
+    print(test_postcode_list)
+    r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
+    data = json.loads(r)
+    distance_list = {}
 
-	for result_item in data["result"]:
-		if result_item["result"] is None:
-			distance_list[result_item["query"]] = None
-		else:
-			distance = great_circle(latlng_init, (float(result_item["result"]["latitude"]), float(result_item["result"]["longitude"])))
-			distance_list[result_item["query"]] = {"miles": round(distance.miles, 3), "km": round(distance.km, 3)}
+    for result_item in data["result"]:
+        if result_item["result"] is None:
+            distance_list[result_item["query"]] = None
+        else:
+            distance = great_circle(latlng_init, (float(result_item["result"]["latitude"]), float(result_item["result"]["longitude"])))
+            distance_list[result_item["query"]] = {"miles": round(distance.miles, 3), "km": round(distance.km, 3)}
 
-	return jsonify(distance_list)
+    return jsonify(distance_list)
 
 
