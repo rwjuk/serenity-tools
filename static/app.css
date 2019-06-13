@@ -29,3 +29,7 @@ textarea.block{
 h4:not(:first-child){
 	margin-top: 3vh;
 }
+
+label{
+    margin-bottom: 0.1rem;
+}

@@ -40,7 +40,7 @@ $(document).ready(function(){
 			}).done(function(data){
                 var outputBox = $("#output");
                 var output = "";
-                for(var key in obj){
+                for(var key in data){
                     if (obj.hasOwnProperty(key)){
                         var value=obj[key];
                         if (format === "readable"){
