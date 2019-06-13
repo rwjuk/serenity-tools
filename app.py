@@ -38,7 +38,7 @@ def calculate_batch_postcode_distance():
 
     if (len(test_postcode_list) == 1):
         distance = calculate_postcode_distance(reference_postcode, test_postcode_list[0])
-        return jsonify({test_postcode_list[0] : {"miles": round(distance.miles, 3), "km": round(distance.km, 3)}})
+        return jsonify({test_postcode_list[0] : {"miles": distance[0], "km": distance[1]}})
     else:
         latlng_init = get_postcode_lat_lng(reference_postcode)
         r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
