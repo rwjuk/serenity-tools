@@ -41,8 +41,8 @@ $(document).ready(function(){
                 var outputBox = $("#output");
                 var output = "";
                 for(var key in data){
-                    if (obj.hasOwnProperty(key)){
-                        var value=obj[key];
+                    if (data.hasOwnProperty(key)){
+                        var value=data[key];
                         if (format === "readable"){
                             output += `${key}: ${value[units]} ${units}\r\n`;
                         } else {
