@@ -35,18 +35,23 @@ def calculate_batch_postcode_distance():
     reference_postcode = obj['reference_postcode']
     test_postcode_list = obj['test_postcode_list']
 
-    latlng_init = get_postcode_lat_lng(reference_postcode)
-    r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
-    data = json.loads(r)
-    distance_list = {}
-    print(data)
-    for result_item in data["result"]:
-        if result_item["result"] is None:
-            distance_list[result_item["query"]] = None
-        else:
-            distance = great_circle(latlng_init, (float(result_item["result"]["latitude"]), float(result_item["result"]["longitude"])))
-            distance_list[result_item["query"]] = {"miles": round(distance.miles, 3), "km": round(distance.km, 3)}
 
-    return jsonify(distance_list)
+    if (len(test_postcode_list) == 1):
+        distance = calculate_postcode_distance(reference_postcode, test_postcode_list[0])
+        return jsonify({test_postcode_list[0] : {"miles": round(distance.miles, 3), "km": round(distance.km, 3)}})
+    else:
+        latlng_init = get_postcode_lat_lng(reference_postcode)
+        r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
+        data = json.loads(r)
+        distance_list = {}
+        print(data)
+        for result_item in data["result"]:
+            if result_item["result"] is None:
+                distance_list[result_item["query"]] = None
+            else:
+                distance = great_circle(latlng_init, (float(result_item["result"]["latitude"]), float(result_item["result"]["longitude"])))
+                distance_list[result_item["query"]] = {"miles": round(distance.miles, 3), "km": round(distance.km, 3)}
+
+        return jsonify(distance_list)
 
 
