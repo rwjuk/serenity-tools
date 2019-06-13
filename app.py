@@ -6,6 +6,10 @@ import json
 
 from geopy.distance import great_circle
 
+@application.route('/')
+def render_home():
+    return render_template("about.html")
+
 @application.route('/about')
 def render_about():
     return render_template("about.html")
