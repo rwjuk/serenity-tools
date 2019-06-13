@@ -54,4 +54,8 @@ $(document).ready(function(){
 			});
 		}
 	});
+    
+    $("#btn-clear").click(function(){
+        $("#output").val("");
+    });
 });
