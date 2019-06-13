@@ -2,8 +2,8 @@ $(document).ready(function(){
 	$("#btn-calc-single-postcode").click(function(){
 		var p1 = $("#postcode1").val().toUpperCase();
 		var p2 = $("#postcode2").val().toUpperCase();
-        var format = "readable";
-        var units = "km";
+        var format = $('input[name=format]:checked').val();
+        var units = $('input[name=units]:checked').val();
 		if (p1 !== "" && p2 !== "")
 		{
 			jQuery.get( `/api/postcodes/singledistance/${p1}/${p2}`, function( data ) {
@@ -27,8 +27,8 @@ $(document).ready(function(){
 	$("#btn-calc-multi-postcode").click(function(){
 		var ref = $("#ref_postcode").val().toUpperCase();
 		var test_list = $("#postcode-list").val().split("\n");
-        var format = "readable";
-        var units = "km";
+        var format = $('input[name=format]:checked').val();
+        var units = $('input[name=units]:checked').val();
 		if (ref !== "" && test_list.length > 0)
 		{
 			jQuery.ajax({
@@ -44,9 +44,9 @@ $(document).ready(function(){
                     if (data.hasOwnProperty(key)){
                         var value=data[key];
                         if (format === "readable"){
-                            output += `${key}: ${value[units]} ${units}\r\n`;
+                            output += `${key.toUpperCase()}: ${value[units]} ${units}\r\n`;
                         } else {
-                            output += `${key}, ${value[units]}\r\n`;
+                            output += `${key.toUpperCase()}, ${value[units]}\r\n`;
                         }
                     }
                 }
