@@ -18,7 +18,7 @@ $(document).ready(function(){
                 if (format === "readable"){
                     outputBox.val(outputBox.val() + `Distance between ${p1} and ${p2}: ${value} ${units}\r\n`);
                 } else {
-                    outputBox.val(outputBox.val() + `${value}\r\n`);
+                    outputBox.val(outputBox.val() + `${p1}-${p2},${value}\r\n`);
                 }
 			});
 		}
