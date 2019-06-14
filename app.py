@@ -48,7 +48,6 @@ def calculate_batch_postcode_distance():
         r = requests.post('http://api.postcodes.io/postcodes', data = {'postcodes':test_postcode_list}).text
         data = json.loads(r)
         distance_list = {}
-        print(data)
         for result_item in data["result"]:
             if result_item["result"] is None:
                 distance_list[result_item["query"]] = None
